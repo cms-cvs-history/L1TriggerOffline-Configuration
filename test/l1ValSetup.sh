@@ -39,11 +39,11 @@ for file in `ls RelVal*.txt`
   mkdir $dataset
   
 # copy job config file and delete final line }
-  sed '$d' $CMSSW_BASE/src/L1Trigger/Configuration/test/l1validation.cfg > $dataset/l1validation.cfg
+  sed '$d' $CMSSW_BASE/src/L1TriggerOffline/Configuration/test/l1Val.cfg > $dataset/l1Val.cfg
   
 # cat datasets to configs and add final }
-  cat $dataset.txt >> $dataset/l1validation.cfg
-  cat >> $dataset/l1validation.cfg <<-EOF
+  cat $dataset.txt >> $dataset/l1Val.cfg
+  cat >> $dataset/l1Val.cfg <<-EOF
 }
 EOF
   
@@ -53,8 +53,8 @@ EOF
 cd $pwd/$dataset
 `scramv1 runtime -sh`
 export STAGE_SVCCLASS=default
-cmsRun l1validation.cfg >& log
-python $CMSSW_BASE/src/L1Trigger/Configuration/test/l1validation.py l1validation.root $dataset -q -b
+cmsRun l1Val.cfg >& l1Val.log
+python $CMSSW_BASE/src/L1Trigger/Configuration/test/l1ValPlots.py l1Val.root $dataset -q -b
 EOF
   chmod ugo+x $dataset/batch.sh
   
