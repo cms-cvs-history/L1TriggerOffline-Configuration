@@ -54,7 +54,7 @@ cd $pwd/$dataset
 `scramv1 runtime -sh`
 export STAGE_SVCCLASS=default
 cmsRun l1Val.cfg >& l1Val.log
-python $CMSSW_BASE/src/L1Trigger/Configuration/test/l1ValPlots.py l1Val.root $dataset -q -b
+python $CMSSW_BASE/src/L1TriggerOffline/Configuration/test/l1ValPlots.py l1Val.root $dataset -q -b
 EOF
   chmod ugo+x $dataset/batch.sh
   
