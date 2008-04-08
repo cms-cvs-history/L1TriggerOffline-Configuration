@@ -12,6 +12,13 @@
 # }
 #
 
+# check environment is setup
+if [ $CMSSW_BASE = "" ]; then
+    echo "Do eval scramv1 ru -sh first!"
+    exit 1
+fi
+
+# optional clean up
 if [ "$1" = "clean" ]; then
     for file in `ls RelVal*.txt`
       do
