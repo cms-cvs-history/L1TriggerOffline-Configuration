@@ -18,7 +18,9 @@ if [ $CMSSW_BASE = "" ]; then
     exit 1
 fi
 
-# optional clean up
+JOB=""
+
+# get argument = 'clean', or a job type
 if [ "$1" = "clean" ]; then
     for file in `ls RelVal*.txt`
       do
@@ -28,6 +30,8 @@ if [ "$1" = "clean" ]; then
     done
     rm submitall.sh
     exit 0
+else
+    JOB=$1
 fi
 
 pwd=`pwd`
@@ -43,24 +47,29 @@ for file in `ls RelVal*.txt`
   echo Making config for $dataset
   
 # create test area
-  mkdir $dataset
-  
+  if [ ! -e $dataset ]; then
+      mkdir $dataset
+  fi
+
 # copy job config file and delete final line }
-  sed '$d' $CMSSW_BASE/src/L1TriggerOffline/Configuration/test/l1Val.cfg > $dataset/l1Val.cfg
+  sed '$d' $CMSSW_BASE/src/L1TriggerOffline/Configuration/test/$JOB.cfg > $dataset/$JOB.cfg
   
 # cat datasets to configs and add final }
-  cat $dataset.txt >> $dataset/l1Val.cfg
-  cat >> $dataset/l1Val.cfg <<-EOF
+  cat $dataset.txt >> $dataset/$JOB.cfg
+  cat >> $dataset/$JOB.cfg <<-EOF
 }
 EOF
   
 # create batch script
+  if [ -e $dataset/batch.sh ]; then
+      rm $dataset/batch.sh
+  fi
   cat >> $dataset/batch.sh <<EOF
 #!/bin/bash
 cd $pwd/$dataset
 `scramv1 runtime -sh`
 export STAGE_SVCCLASS=default
-cmsRun l1Val.cfg >& l1Val.log
+cmsRun $JOB.cfg >& $JOB.log
 python $CMSSW_BASE/src/L1TriggerOffline/Configuration/test/l1ValPlots.py l1Val.root $dataset -q -b
 EOF
   chmod ugo+x $dataset/batch.sh
