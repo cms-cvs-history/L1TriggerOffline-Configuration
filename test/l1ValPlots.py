@@ -122,7 +122,7 @@ canvas = TCanvas("canvas");
 
 
 # muon resolutions & efficiencies
-#basicPlots("muon", "L1AnalyzerMuonMC", "muon");
+basicPlots("muon", "L1AnalyzerMuonMC", "muon");
 
 # iso EM
 basicPlots("isoem", "L1AnalyzerIsoEmMC", "isoem");
