@@ -1,3 +1,12 @@
+# l1ValPlots.py
+# Jim Brooke
+#
+# Usage :
+#   eval `scramv1 ru -sh`
+#   python l1ValPlots.py <input histogram file> <output plot filename>
+#
+
+
 import sys;
 import os;
 import tarfile;
