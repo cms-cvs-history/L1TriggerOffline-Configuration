@@ -37,6 +37,9 @@ fi
 pwd=`pwd`
 
 # create submit-all script
+if [ -e submitall.sh ]; then
+  rm submitall.sh
+fi
 touch submitall.sh
 chmod u+x submitall.sh
 
@@ -77,7 +80,7 @@ EOF
 # add a line to batch submit
   cat >> submitall.sh<<EOF
 cd $dataset
-bsub -q1nh batch.sh
+bsub -q1nh -u monica_dish@yahoo.co.in batch.sh
 cd ..
 EOF
   
