@@ -55,14 +55,11 @@ for file in `ls RelVal*.txt`
   fi
 
 # copy job config file and delete final line }
-  sed '$d' $CMSSW_BASE/src/L1TriggerOffline/Configuration/test/$JOB.cfg > $dataset/$JOB.cfg
+  sed '$d' $CMSSW_BASE/src/L1TriggerOffline/Configuration/test/$JOB\_cfg.py > $dataset/$JOB\_cfg.py
   
 # cat datasets to configs and add final }
-  cat $dataset.txt >> $dataset/$JOB.cfg
-  cat >> $dataset/$JOB.cfg <<-EOF
-}
-EOF
-  
+  cat $dataset.txt >> $dataset/$JOB\_cfg.py
+
 # create batch script
   if [ -e $dataset/batch.sh ]; then
       rm $dataset/batch.sh
@@ -72,7 +69,7 @@ EOF
 cd $pwd/$dataset
 `scramv1 runtime -sh`
 export STAGE_SVCCLASS=default
-cmsRun $JOB.cfg >& $JOB.log
+cmsRun $JOB_cfg.py >& $JOB.log
 python $CMSSW_BASE/src/L1TriggerOffline/Configuration/test/l1ValPlots.py l1Val.root $dataset -q -b
 EOF
   chmod ugo+x $dataset/batch.sh
