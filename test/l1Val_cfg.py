@@ -4,6 +4,7 @@ process = cms.Process("l1validation")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
 process.load("L1Trigger.Configuration.L1DummyConfig_cff")
+process.load("L1TriggerConfig/L1GtConfigProducers/Luminosity/lumi1030.L1Menu2008_2E30_Unprescaled_cff")
 
 process.load("L1Trigger.Configuration.L1Extra_cff")
 process.l1extraParticles.muonSource = cms.InputTag("hltGtDigis")
@@ -45,5 +46,5 @@ process.maxEvents = cms.untracked.PSet(
 )
 process.p = cms.Path(process.l1extraParticles+process.L1MuonMCAnalysis+process.L1IsoEmMCAnalysis+process.L1NonIsoEmMCAnalysis+process.L1CenJetMCAnalysis+process.L1ForJetMCAnalysis+process.L1TauJetMCAnalysis+process.L1MetMCAnalysis)
 process.e = cms.EndPath(process.l1GtTrigReport)
-process.TFileService.fileName = 'l1validation.root'
+process.TFileService.fileName = 'l1Val.root'
 
