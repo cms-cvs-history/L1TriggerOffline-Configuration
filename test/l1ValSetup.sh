@@ -69,7 +69,7 @@ for file in `ls RelVal*.txt`
 cd $pwd/$dataset
 `scramv1 runtime -sh`
 export STAGE_SVCCLASS=default
-cmsRun $JOB_cfg.py >& $JOB.log
+cmsRun $JOB\_cfg.py >& $JOB.log
 python $CMSSW_BASE/src/L1TriggerOffline/Configuration/test/l1ValPlots.py l1Val.root $dataset -q -b
 EOF
   chmod ugo+x $dataset/batch.sh
