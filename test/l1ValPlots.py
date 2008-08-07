@@ -137,7 +137,7 @@ basicPlots("muon", "L1AnalyzerMuonMC", "muon");
 basicPlots("isoem", "L1AnalyzerIsoEmMC", "isoem");
 
 # iso EM
-basicPlots("nonisoem", "L1AnalyzerIsoEmMC", "nonisoem");
+basicPlots("nonisoem", "L1AnalyzerNonIsoEmMC", "nonisoem");
 
 # tau jets
 basicPlots("tau", "L1AnalyzerTauJetsMC", "tau");
