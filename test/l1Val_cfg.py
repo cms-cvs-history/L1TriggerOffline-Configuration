@@ -38,7 +38,7 @@ process.load("L1TriggerOffline.L1Analyzer.L1MetMCAnalysis_cff")
 process.load("L1Trigger.GlobalTriggerAnalyzer.l1GtTrigReport_cfi")
 process.l1GtTrigReport.L1GtRecordInputTag = cms.InputTag("hltGtDigis")
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:E_35_ALL.root')
+    fileNames = cms.untracked.vstring('file:TTbar_cfi_GEN_SIM_DIGI_L1_DIGI2RAW_HLT.root')
 )
 
 process.maxEvents = cms.untracked.PSet(
