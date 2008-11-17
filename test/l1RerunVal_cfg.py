@@ -6,12 +6,21 @@ process.load("FWCore.MessageService.MessageLogger_cfi")
 process.load("Configuration.StandardSequences.MagneticField_cff")
 process.load("Configuration.StandardSequences.Geometry_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
+process.GlobalTag.globaltag = "STARTUP_V7::All"
 
-process.load("L1Trigger.Configuration.L1Emulator_cff")
-process.load("L1Trigger.Configuration.L1DummyConfig_cff")
+process.load("L1Trigger.Configuration.SimL1Emulator_cff")
 process.load("L1Trigger.Configuration.L1Extra_cff")
+process.l1extraParticles.muonSource = cms.InputTag("simGmtDigis")
+process.l1extraParticles.isolatedEmSource = cms.InputTag("simGctDigis","isoEm")
+process.l1extraParticles.nonIsolatedEmSource = cms.InputTag("simGctDigis","nonIsoEm")
+process.l1extraParticles.forwardJetSource = cms.InputTag("simGctDigis","forJets")
+process.l1extraParticles.centralJetSource = cms.InputTag("simGctDigis","cenJets")
+process.l1extraParticles.tauJetSource = cms.InputTag("simGctDigis","tauJets")
+process.l1extraParticles.etMissSource = cms.InputTag("simGctDigis")
+process.l1extraParticles.etTotalSource = cms.InputTag("simGctDigis")
+process.l1extraParticles.etHadSource = cms.InputTag("simGctDigis")
 
-process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1030.L1Menu2008_2E30_cff")
+process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1030.L1Menu_2008MC_2E30_Unprescaled_cff")
 
 process.load("L1TriggerOffline.L1Analyzer.L1MuonMCAnalysis_cff")
 process.load("L1TriggerOffline.L1Analyzer.L1IsoEmMCAnalysis_cff")
@@ -32,7 +41,7 @@ process.source = cms.Source("PoolSource",
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(1000)
 )
-process.p1 = cms.Path(process.L1Emulator
+process.p1 = cms.Path(process.SimL1Emulator
                       *process.L1Extra
                       *process.L1MuonMCAnalysis
                       +process.L1IsoEmMCAnalysis
