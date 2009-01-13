@@ -6,7 +6,7 @@
 # Expects a set of files called eg. RelValSingleElectronPt35.txt
 # containing a config file snippet that replaces input files. eg
 #
-# replace PoolSource.fileNames = {
+# process.source.fileNames = {
 # '/store/mc/2007/11/19/RelVal-RelValSingleElectronPt35-1195478550/0000/043889D3-4A98-DC11-9446-000423D94A68.root',
 # '/store/mc/2007/11/19/RelVal-RelValSingleElectronPt35-1195478550/0001/083B869C-4A99-DC11-9588-001617DBD5B2.root'
 # }
@@ -22,7 +22,7 @@ JOB=""
 
 # get argument = 'clean', or a job type
 if [ "$1" = "clean" ]; then
-    for file in `ls RelVal*.txt`
+    for file in `ls *.txt`
       do
       dataset=${file%.*}
       echo Removing $dataset
@@ -43,7 +43,7 @@ fi
 touch submitall.sh
 chmod u+x submitall.sh
 
-for file in `ls RelVal*.txt`
+for file in `ls *.txt`
   do
   
   dataset=${file%.*}
@@ -77,7 +77,7 @@ EOF
 # add a line to batch submit
   cat >> submitall.sh<<EOF
 cd $dataset
-bsub -q1nh -u monica_dish@yahoo.co.in batch.sh
+bsub -q1nh batch.sh
 cd ..
 EOF
   
