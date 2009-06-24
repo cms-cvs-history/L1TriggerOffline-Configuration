@@ -77,7 +77,7 @@ EOF
 # add a line to batch submit
   cat >> submitall.sh<<EOF
 cd $dataset
-bsub -q1nh batch.sh
+bsub -q8nh batch.sh
 cd ..
 EOF
   
