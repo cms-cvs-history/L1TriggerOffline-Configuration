@@ -91,7 +91,7 @@ basicPlots("em", "L1AnalyzerEmMC");
 basicPlots("isoem", "L1AnalyzerIsoEmMC");
 basicPlots("nonisoem", "L1AnalyzerNonIsoEmMC");
 basicPlots("jet", "L1AnalyzerJetsMC");
-basicPlots("cenjet", "L1AnalyzerCenJetsMC");
+basicPlots("cenjet", "L1AnalyzerCenTauJetsMC");
 basicPlots("forjet", "L1AnalyzerForJetsMC");
 basicPlots("tau", "L1AnalyzerTauJetsMC");
 basicPlots("met", "L1AnalyzerMetMC");
