@@ -6,3 +6,5 @@ process.TFileService.fileName = 'l1RerunVal_STARTUP.root'
 
 process.GlobalTag.globaltag = "STARTUP31X_V1::All"
 
+process.TFileService.fileName = 'l1RerunVal_STARTUP.root'
+

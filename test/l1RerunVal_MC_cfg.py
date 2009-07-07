@@ -8,4 +8,5 @@ process.GlobalTag.globaltag = "MC_31X_V1::All"
 
 process.load("L1TriggerConfig.GctConfigProducers.l1GctConfig_cfi")
 
+process.TFileService.fileName = 'l1RerunVal_MC.root'
 
